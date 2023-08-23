@@ -1,3 +1,4 @@
+require('dotenv').config();
 const bodyParser = require('body-parser');
 const express = require('express');
 const ejs = require('ejs');
@@ -19,8 +20,7 @@ const userSchema = new mongoose.Schema({
     password: String
 });
 
-const cigret = 'bukiburmeebillykaball';
-userSchema.plugin(encrypt, { secret: cigret, encryptedFields: ['password'] });
+userSchema.plugin(encrypt, { secret: process.env.CIGRET, encryptedFields: ['password'] });
 
 const User = new mongoose.model('Usser', userSchema);
 
